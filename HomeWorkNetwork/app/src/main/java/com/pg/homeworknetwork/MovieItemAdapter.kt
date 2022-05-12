@@ -13,7 +13,10 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.RoundedCornersTransformation
 
+
 internal class MovieItemAdapter : ListAdapter<Movie, MovieItemAdapter.ViewHolder>(MOVIE_COMPARATOR) {
+
+
     private var clickListener: IOnItemClick? = null
 
     fun setClickListener(listener: IOnItemClick?) {
@@ -40,6 +43,7 @@ internal class MovieItemAdapter : ListAdapter<Movie, MovieItemAdapter.ViewHolder
         fun onItemClick(movie: Movie)
     }
 
+
     internal inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var parentItem: LinearLayout = itemView.findViewById(R.id.parentItem)
         private var image: ImageView = itemView.findViewById(R.id.image)
@@ -52,13 +56,16 @@ internal class MovieItemAdapter : ListAdapter<Movie, MovieItemAdapter.ViewHolder
             image.requestLayout()
             itemTitle.text = movie.title
 
-            image.load("${BuildConfig.API_IMAGE_BASE_URL}${movie.posterPath}") {
+            image.load("${movie.image}") {
                 transformations(RoundedCornersTransformation(16f))
             }
         }
+
     }
 
+
     companion object {
+
         val MOVIE_COMPARATOR = object : DiffUtil.ItemCallback<Movie>() {
             override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
                 return oldItem == newItem
