@@ -9,9 +9,9 @@ android {
 
     defaultConfig {
 
-        buildConfigField "String", "API_BASE_URL", '"api.themoviedb.org"'
-        buildConfigField "String", "API_KEY", '"/*ваш ap_key*/"'
-        buildConfigField "String", "API_IMAGE_BASE_URL", '"https://image.tmdb.org/t/p/w500"'
+        buildConfigField "String", "API_BASE_URL", '"imdb-api.com"'
+        buildConfigField "String", "API_KEY", '"k_7ffgs38v"'
+//        buildConfigField "String", "API_IMAGE_BASE_URL", '"https://imdb-api.com/images"'
 
         applicationId "com.pg.homeworknetwork"
         minSdk 30
@@ -28,6 +28,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    packagingOptions {
+        pickFirst 'META-INF/DEPENDENCIES'
+        pickFirst 'META-INF/INDEX.LIST'
+        pickFirst 'META-INF/io.netty.versions.properties'
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -44,6 +51,25 @@ dependencies {
     //--------------------------------------------------------------------------------------------------------------
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'com.google.android.material:material:1.6.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+
+    //--------------------------------------------------------------------------------------------------------------
+    implementation ("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
+
+    //Coroutine
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0'
+
+    //Interceptor
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.8.1'
+
+    // ktor
+    implementation 'io.ktor:ktor-client-core:1.6.7'
+    implementation 'io.ktor:ktor-client-android:1.6.7'
+    implementation 'io.ktor:ktor-client-serialization:1.6.7'
+    implementation 'io.ktor:ktor-client-logging:1.6.7'
+    implementation 'io.ktor:ktor-client-cio:1.6.7'
+    implementation 'io.ktor:ktor-server-core:1.6.7'
+    implementation 'io.ktor:ktor-server-netty:1.6.7'
 }
